@@ -1,5 +1,6 @@
 type Location = {
   city: string;
+  state?: string;
   country?: string;
 };
 
@@ -9,15 +10,16 @@ export type Coords = {
   display?: string;
 };
 
-const apiLink = ({ city, country }: Location): string => {
-  return `https://nominatim.openstreetmap.org/search?city=${city}&country=${country}&format=json&limit=5`;
+const apiLink = ({ city, state, country }: Location): string => {
+  return `https://nominatim.openstreetmap.org/search?city=${city}&state=${state ? state : ""}&country=${country ? country : ""}&format=json&limit=5`;
 };
 
 export async function getCoordsFromCity({
   city,
-  country = "Norway",
+  state = "",
+  country = "",
 }: Location): Promise<Coords> {
-  const url = apiLink({ city, country });
+  const url = apiLink({ city, state, country });
 
   const response = await fetch(url, {
     headers: {
