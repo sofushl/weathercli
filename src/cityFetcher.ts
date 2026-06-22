@@ -7,7 +7,8 @@ type Location = {
 export type Coords = {
   lat: number;
   lon: number;
-  display?: string;
+  display: string;
+  city: string;
 };
 
 const apiLink = ({ city, state, country }: Location): string => {
@@ -35,5 +36,6 @@ export async function getCoordsFromCity({
     lat: parseFloat(data[0].lat),
     lon: parseFloat(data[0].lon),
     display: data[0].display_name,
+    city: city,
   };
 }
