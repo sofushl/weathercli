@@ -11,7 +11,6 @@ import { Coords, getCoordsFromCity } from "./cityFetcher.js";
 
 import { mkdir, readFile, writeFile } from "fs/promises";
 import { dirname, resolve } from "path";
-import { time } from "console";
 
 type Cache = {
   current: { [cities: string]: WeatherData };
