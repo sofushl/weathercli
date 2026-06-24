@@ -24,22 +24,13 @@ export type ForecastData = {
   display?: string;
 };
 
-type CurrentApiResponse = {
-  current: { temperature_2m: number; wind_speed_10m: number };
-};
+type CurrentApiResponse = z.infer<typeof CurrentSchema>;
 
 const CurrentSchema = z.object({
   current: z.object({ temperature_2m: z.number(), wind_speed_10m: z.number() }),
 });
 
-type ForecastApiResponse = {
-  daily: {
-    time: string[];
-    temperature_2m_max: number[];
-    temperature_2m_min: number[];
-    wind_gusts_10m_max: number[];
-  };
-};
+type ForecastApiResponse = z.infer<typeof ForecastSchema>;
 
 const ForecastSchema = z.object({
   daily: z.object({
